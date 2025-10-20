@@ -92,23 +92,23 @@ const Index = () => {
         <div className="container mx-auto max-w-6xl">
           <div className="text-center animate-fade-in relative z-10">
             <div className="inline-block mb-6">
-              <div className="flex items-center gap-3 bg-primary/10 px-6 py-3 rounded-full border border-primary/20">
+              <div className="flex items-center gap-3 bg-primary/20 px-6 py-3 rounded-full border-2 border-primary/40 shadow-lg">
                 <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                <span className="text-primary font-semibold text-sm">Инновации в IT</span>
+                <span className="text-primary font-bold text-base">Инновации в IT</span>
               </div>
             </div>
-            <h1 className="text-6xl md:text-8xl font-heading font-bold mb-6 bg-gradient-to-r from-primary via-blue-500 to-secondary bg-clip-text text-transparent leading-tight">
+            <h1 className="text-6xl md:text-8xl font-heading font-extrabold mb-6 bg-gradient-to-r from-[#0EA5E9] via-[#0284c7] to-[#0369a1] bg-clip-text text-transparent leading-tight drop-shadow-sm">
               Технологии будущего
             </h1>
-            <p className="text-xl md:text-2xl text-gray-700 mb-10 max-w-3xl mx-auto font-medium">
+            <p className="text-2xl md:text-3xl text-gray-800 mb-10 max-w-3xl mx-auto font-bold leading-relaxed">
               Создаём инновационные IT-решения, которые трансформируют бизнес
             </p>
             <div className="flex gap-4 justify-center flex-wrap">
-              <Button size="lg" className="group shadow-xl hover:shadow-2xl transition-all text-base px-8">
+              <Button size="lg" className="group shadow-2xl hover:shadow-primary/50 transition-all text-lg px-10 py-7 font-bold">
                 Начать проект
                 <Icon name="ArrowRight" className="ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button size="lg" variant="outline" className="shadow-lg hover:shadow-xl transition-all text-base px-8 border-2">
+              <Button size="lg" variant="outline" className="shadow-xl hover:shadow-2xl transition-all text-lg px-10 py-7 border-2 border-gray-800 hover:bg-gray-50 font-bold text-gray-800">
                 Узнать больше
               </Button>
             </div>
