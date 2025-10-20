@@ -6,9 +6,11 @@ import { useState } from "react";
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState("home");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const scrollToSection = (sectionId: string) => {
     setActiveSection(sectionId);
+    setMobileMenuOpen(false);
     const element = document.getElementById(sectionId);
     element?.scrollIntoView({ behavior: "smooth" });
   };
@@ -58,10 +60,12 @@ const Index = () => {
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl" />
       
       <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-lg border-b border-gray-200 shadow-sm z-50">
-        <div className="container mx-auto px-6 py-3">
+        <div className="container mx-auto px-4 sm:px-6 py-3">
           <div className="flex items-center justify-between">
-            <Logo className="hover:opacity-80 transition-opacity cursor-pointer" />
-            <div className="hidden md:flex gap-1">
+            <Logo className="hover:opacity-80 transition-opacity cursor-pointer scale-90 sm:scale-100" />
+            
+            {/* Desktop Menu */}
+            <div className="hidden lg:flex gap-1">
               {[
                 { id: "home", label: "Главная" },
                 { id: "technologies", label: "Технологии" },
@@ -83,32 +87,70 @@ const Index = () => {
                 </button>
               ))}
             </div>
-            <Button className="hidden md:block shadow-lg hover:shadow-xl transition-shadow">Связаться</Button>
+            <Button className="hidden lg:block shadow-lg hover:shadow-xl transition-shadow">Связаться</Button>
+            
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+              aria-label="Меню"
+            >
+              <Icon name={mobileMenuOpen ? "X" : "Menu"} size={28} className="text-gray-700" />
+            </button>
           </div>
+          
+          {/* Mobile Menu */}
+          {mobileMenuOpen && (
+            <div className="lg:hidden absolute top-full left-0 w-full bg-white border-b border-gray-200 shadow-lg py-4">
+              <div className="flex flex-col gap-2 px-4">
+                {[
+                  { id: "home", label: "Главная" },
+                  { id: "technologies", label: "Технологии" },
+                  { id: "services", label: "Услуги" },
+                  { id: "about", label: "О компании" },
+                  { id: "team", label: "Команда" },
+                  { id: "contact", label: "Контакты" },
+                ].map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => scrollToSection(item.id)}
+                    className={`px-4 py-3 text-base font-semibold rounded-lg transition-all text-left ${
+                      activeSection === item.id 
+                        ? "bg-primary text-white shadow-md" 
+                        : "text-gray-700 hover:bg-gray-100"
+                    }`}
+                  >
+                    {item.label}
+                  </button>
+                ))}
+                <Button className="w-full mt-2" onClick={() => scrollToSection('contact')}>Связаться</Button>
+              </div>
+            </div>
+          )}
         </div>
       </nav>
 
-      <section id="home" className="pt-32 pb-20 px-6 relative">
+      <section id="home" className="pt-24 sm:pt-32 pb-12 sm:pb-20 px-4 sm:px-6 relative">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center animate-fade-in relative z-10">
-            <div className="inline-block mb-6">
-              <div className="flex items-center gap-3 bg-primary/20 px-6 py-3 rounded-full border-2 border-primary/40 shadow-lg">
+            <div className="inline-block mb-4 sm:mb-6">
+              <div className="flex items-center gap-2 sm:gap-3 bg-primary/20 px-4 sm:px-6 py-2 sm:py-3 rounded-full border-2 border-primary/40 shadow-lg">
                 <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                <span className="text-primary font-bold text-base">Инновации в IT</span>
+                <span className="text-primary font-bold text-sm sm:text-base">Инновации в IT</span>
               </div>
             </div>
-            <h1 className="text-6xl md:text-8xl font-heading font-extrabold mb-6 bg-gradient-to-r from-[#0EA5E9] via-[#0284c7] to-[#0369a1] bg-clip-text text-transparent leading-tight drop-shadow-sm">
+            <h1 className="text-4xl sm:text-6xl md:text-8xl font-heading font-extrabold mb-4 sm:mb-6 bg-gradient-to-r from-[#0EA5E9] via-[#0284c7] to-[#0369a1] bg-clip-text text-transparent leading-tight drop-shadow-sm px-2">
               Технологии будущего
             </h1>
-            <p className="text-2xl md:text-3xl text-gray-800 mb-10 max-w-3xl mx-auto font-bold leading-relaxed">
+            <p className="text-lg sm:text-2xl md:text-3xl text-gray-800 mb-8 sm:mb-10 max-w-3xl mx-auto font-bold leading-relaxed px-4">
               Создаём инновационные IT-решения, которые трансформируют бизнес
             </p>
-            <div className="flex gap-4 justify-center flex-wrap">
-              <Button size="lg" className="group shadow-2xl hover:shadow-primary/50 transition-all text-lg px-10 py-7 font-bold">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
+              <Button size="lg" className="group shadow-2xl hover:shadow-primary/50 transition-all text-base sm:text-lg px-8 sm:px-10 py-6 sm:py-7 font-bold w-full sm:w-auto">
                 Начать проект
                 <Icon name="ArrowRight" className="ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button size="lg" variant="outline" className="shadow-xl hover:shadow-2xl transition-all text-lg px-10 py-7 border-2 border-gray-800 hover:bg-gray-50 font-bold text-gray-800">
+              <Button size="lg" variant="outline" className="shadow-xl hover:shadow-2xl transition-all text-base sm:text-lg px-8 sm:px-10 py-6 sm:py-7 border-2 border-gray-800 hover:bg-gray-50 font-bold text-gray-800 w-full sm:w-auto">
                 Узнать больше
               </Button>
             </div>
@@ -116,12 +158,12 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="technologies" className="py-20 px-6 bg-white relative">
+      <section id="technologies" className="py-12 sm:py-20 px-4 sm:px-6 bg-white relative">
         <div className="absolute top-20 left-10 w-72 h-72 bg-blue-100/40 rounded-full blur-3xl" />
         <div className="container mx-auto max-w-6xl relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-heading font-bold mb-4 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">Технологии</h2>
-            <p className="text-center text-gray-600 text-lg max-w-2xl mx-auto">
+          <div className="text-center mb-10 sm:mb-16">
+            <h2 className="text-3xl sm:text-5xl font-heading font-bold mb-3 sm:mb-4 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent px-4">Технологии</h2>
+            <p className="text-center text-gray-600 text-base sm:text-lg max-w-2xl mx-auto px-4">
               Используем современный стек технологий для создания надёжных решений
             </p>
           </div>
@@ -145,12 +187,12 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="services" className="py-20 px-6 bg-gradient-to-br from-blue-50/50 to-white relative">
+      <section id="services" className="py-12 sm:py-20 px-4 sm:px-6 bg-gradient-to-br from-blue-50/50 to-white relative">
         <div className="absolute bottom-20 right-10 w-80 h-80 bg-primary/5 rounded-full blur-3xl" />
         <div className="container mx-auto max-w-6xl relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-heading font-bold mb-4 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">Услуги</h2>
-            <p className="text-center text-gray-600 text-lg max-w-2xl mx-auto">
+          <div className="text-center mb-10 sm:mb-16">
+            <h2 className="text-3xl sm:text-5xl font-heading font-bold mb-3 sm:mb-4 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent px-4">Услуги</h2>
+            <p className="text-center text-gray-600 text-base sm:text-lg max-w-2xl mx-auto px-4">
               Полный спектр услуг для цифровой трансформации вашего бизнеса
             </p>
           </div>
@@ -178,27 +220,27 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="about" className="py-20 px-6 bg-white relative">
+      <section id="about" className="py-12 sm:py-20 px-4 sm:px-6 bg-white relative">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-gradient-to-r from-primary/5 to-secondary/5 rounded-full blur-3xl" />
         <div className="container mx-auto max-w-4xl text-center relative z-10">
-          <h2 className="text-5xl font-heading font-bold mb-8 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">О компании</h2>
-          <p className="text-lg text-gray-700 leading-relaxed mb-6 font-medium">
+          <h2 className="text-3xl sm:text-5xl font-heading font-bold mb-6 sm:mb-8 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent px-4">О компании</h2>
+          <p className="text-base sm:text-lg text-gray-700 leading-relaxed mb-4 sm:mb-6 font-medium px-4">
             Новология — это команда экспертов, объединённых общей целью: создавать технологические
             решения, которые меняют мир к лучшему. Мы специализируемся на разработке современных
             веб-приложений, мобильных платформ и облачных систем.
           </p>
-          <p className="text-lg text-gray-700 leading-relaxed font-medium">
+          <p className="text-base sm:text-lg text-gray-700 leading-relaxed font-medium px-4">
             Наш подход основан на глубоком понимании бизнес-процессов клиента и использовании
             передовых технологий для достижения максимальной эффективности.
           </p>
         </div>
       </section>
 
-      <section id="team" className="py-20 px-6 bg-gradient-to-br from-white to-blue-50/50 relative">
+      <section id="team" className="py-12 sm:py-20 px-4 sm:px-6 bg-gradient-to-br from-white to-blue-50/50 relative">
         <div className="container mx-auto max-w-6xl relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-heading font-bold mb-4 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">Наша команда</h2>
-            <p className="text-center text-gray-600 text-lg max-w-2xl mx-auto">
+          <div className="text-center mb-10 sm:mb-16">
+            <h2 className="text-3xl sm:text-5xl font-heading font-bold mb-3 sm:mb-4 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent px-4">Наша команда</h2>
+            <p className="text-center text-gray-600 text-base sm:text-lg max-w-2xl mx-auto px-4">
               Профессионалы, которые воплощают идеи в реальность
             </p>
           </div>
@@ -220,14 +262,14 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="contact" className="py-20 px-6 bg-white relative">
+      <section id="contact" className="py-12 sm:py-20 px-4 sm:px-6 bg-white relative">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-primary/5 rounded-full blur-3xl" />
         <div className="container mx-auto max-w-3xl text-center relative z-10">
-          <h2 className="text-5xl font-heading font-bold mb-6 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">Контакты</h2>
-          <p className="text-lg text-gray-700 mb-10 font-medium">
+          <h2 className="text-3xl sm:text-5xl font-heading font-bold mb-4 sm:mb-6 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent px-4">Контакты</h2>
+          <p className="text-base sm:text-lg text-gray-700 mb-8 sm:mb-10 font-medium px-4">
             Готовы обсудить ваш проект? Свяжитесь с нами удобным способом
           </p>
-          <div className="flex flex-col md:flex-row gap-5 justify-center mb-10">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center mb-8 sm:mb-10">
             <Card className="flex-1 hover:shadow-xl transition-all border-2 hover:border-primary/50">
               <CardContent className="p-7 flex items-center gap-4">
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center flex-shrink-0">
@@ -258,11 +300,11 @@ const Index = () => {
         </div>
       </section>
 
-      <footer className="bg-gradient-to-r from-primary via-blue-500 to-secondary text-white py-12 px-6 relative overflow-hidden">
+      <footer className="bg-gradient-to-r from-primary via-blue-500 to-secondary text-white py-8 sm:py-12 px-4 sm:px-6 relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full bg-black/5" />
         <div className="container mx-auto text-center relative z-10">
-          <Logo className="mx-auto mb-4 brightness-0 invert" />
-          <p className="text-base opacity-95 font-medium">
+          <Logo className="mx-auto mb-3 sm:mb-4 brightness-0 invert scale-90 sm:scale-100" />
+          <p className="text-sm sm:text-base opacity-95 font-medium">
             © 2025 Новология. Все права защищены.
           </p>
         </div>
