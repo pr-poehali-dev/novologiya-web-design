@@ -167,10 +167,7 @@ const Index = () => {
               Создаём инновационные IT-решения, которые трансформируют бизнес
             </p>
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center px-4 max-w-xl mx-auto">
-              <Button size="lg" className="group shadow-2xl hover:shadow-primary/50 transition-all text-lg sm:text-xl px-10 py-7 sm:py-8 font-bold w-full sm:w-auto">
-                Начать проект
-                <Icon name="ArrowRight" className="ml-2 group-hover:translate-x-1 transition-transform" />
-              </Button>
+              <Button size="lg" className="group shadow-2xl hover:shadow-primary/50 transition-all text-lg sm:text-xl px-10 py-7 sm:py-8 font-bold w-full sm:w-auto"></Button>
               <Button size="lg" variant="outline" className="shadow-xl hover:shadow-2xl transition-all text-lg sm:text-xl px-10 py-7 sm:py-8 border-2 border-gray-800 hover:bg-gray-50 font-bold text-gray-900 w-full sm:w-auto">
                 Узнать больше
               </Button>
