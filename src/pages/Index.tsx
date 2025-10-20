@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
 import Logo from "@/components/Logo";
+import TechBackground from "@/components/TechBackground";
 import { useState } from "react";
 
 const Index = () => {
@@ -56,6 +57,9 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-white via-blue-50/30 to-white relative overflow-hidden">
+      {/* Animated particle network background */}
+      <TechBackground />
+      
       {/* Animated background elements */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}} />
@@ -64,6 +68,17 @@ const Index = () => {
       
       {/* Grid pattern overlay */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(14,165,233,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(14,165,233,0.03)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
+      
+      {/* Binary code rain effect */}
+      <div className="absolute inset-0 pointer-events-none opacity-5 select-none overflow-hidden">
+        <div className="absolute animate-scroll-slow text-xs font-mono text-primary whitespace-pre leading-6">
+          {Array.from({ length: 50 }).map((_, i) => (
+            <div key={i} style={{ marginLeft: `${i * 40}px` }}>
+              {Array.from({ length: 100 }).map(() => Math.random() > 0.5 ? '1' : '0').join('')}
+            </div>
+          ))}
+        </div>
+      </div>
       
       <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-lg border-b border-gray-200 shadow-sm z-50">
         <div className="container mx-auto px-4 sm:px-6 py-3">

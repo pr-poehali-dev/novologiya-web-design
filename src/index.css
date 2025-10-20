@@ -111,3 +111,16 @@
     font-family: "Montserrat", sans-serif;
   }
 }
+
+@keyframes scroll-slow {
+  0% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+.animate-scroll-slow {
+  animation: scroll-slow 60s linear infinite;
+}
