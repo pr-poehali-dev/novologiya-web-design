@@ -56,8 +56,14 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-white via-blue-50/30 to-white relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl" />
+      {/* Animated background elements */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}} />
+      <div className="absolute top-1/3 left-1/4 w-72 h-72 bg-purple-200/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-1/4 right-1/3 w-80 h-80 bg-cyan-200/10 rounded-full blur-3xl" />
+      
+      {/* Grid pattern overlay */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(14,165,233,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(14,165,233,0.03)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
       
       <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-lg border-b border-gray-200 shadow-sm z-50">
         <div className="container mx-auto px-4 sm:px-6 py-3">
@@ -130,27 +136,27 @@ const Index = () => {
         </div>
       </nav>
 
-      <section id="home" className="pt-24 sm:pt-32 pb-12 sm:pb-20 px-4 sm:px-6 relative">
+      <section id="home" className="pt-28 sm:pt-36 pb-16 sm:pb-24 px-4 sm:px-6 relative">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center animate-fade-in relative z-10">
-            <div className="inline-block mb-4 sm:mb-6">
-              <div className="flex items-center gap-2 sm:gap-3 bg-primary/20 px-4 sm:px-6 py-2 sm:py-3 rounded-full border-2 border-primary/40 shadow-lg">
+            <div className="inline-block mb-6 sm:mb-8">
+              <div className="flex items-center gap-2 sm:gap-3 bg-primary/20 px-5 sm:px-7 py-3 sm:py-4 rounded-full border-2 border-primary/40 shadow-lg">
                 <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                <span className="text-primary font-bold text-sm sm:text-base">Инновации в IT</span>
+                <span className="text-primary font-bold text-base sm:text-lg">Инновации в IT</span>
               </div>
             </div>
-            <h1 className="text-4xl sm:text-6xl md:text-8xl font-heading font-extrabold mb-4 sm:mb-6 bg-gradient-to-r from-[#0EA5E9] via-[#0284c7] to-[#0369a1] bg-clip-text text-transparent leading-tight drop-shadow-sm px-2">
+            <h1 className="text-5xl sm:text-7xl md:text-8xl font-heading font-extrabold mb-6 sm:mb-8 bg-gradient-to-r from-[#0EA5E9] via-[#0284c7] to-[#0369a1] bg-clip-text text-transparent leading-tight drop-shadow-sm px-2">
               Технологии будущего
             </h1>
-            <p className="text-lg sm:text-2xl md:text-3xl text-gray-800 mb-8 sm:mb-10 max-w-3xl mx-auto font-bold leading-relaxed px-4">
+            <p className="text-xl sm:text-2xl md:text-3xl text-gray-900 mb-10 sm:mb-12 max-w-3xl mx-auto font-extrabold leading-relaxed px-4">
               Создаём инновационные IT-решения, которые трансформируют бизнес
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
-              <Button size="lg" className="group shadow-2xl hover:shadow-primary/50 transition-all text-base sm:text-lg px-8 sm:px-10 py-6 sm:py-7 font-bold w-full sm:w-auto">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center px-4 max-w-xl mx-auto">
+              <Button size="lg" className="group shadow-2xl hover:shadow-primary/50 transition-all text-lg sm:text-xl px-10 py-7 sm:py-8 font-bold w-full sm:w-auto">
                 Начать проект
                 <Icon name="ArrowRight" className="ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button size="lg" variant="outline" className="shadow-xl hover:shadow-2xl transition-all text-base sm:text-lg px-8 sm:px-10 py-6 sm:py-7 border-2 border-gray-800 hover:bg-gray-50 font-bold text-gray-800 w-full sm:w-auto">
+              <Button size="lg" variant="outline" className="shadow-xl hover:shadow-2xl transition-all text-lg sm:text-xl px-10 py-7 sm:py-8 border-2 border-gray-800 hover:bg-gray-50 font-bold text-gray-900 w-full sm:w-auto">
                 Узнать больше
               </Button>
             </div>
@@ -158,16 +164,16 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="technologies" className="py-12 sm:py-20 px-4 sm:px-6 bg-white relative">
+      <section id="technologies" className="py-16 sm:py-24 px-4 sm:px-6 bg-white relative">
         <div className="absolute top-20 left-10 w-72 h-72 bg-blue-100/40 rounded-full blur-3xl" />
         <div className="container mx-auto max-w-6xl relative z-10">
-          <div className="text-center mb-10 sm:mb-16">
-            <h2 className="text-3xl sm:text-5xl font-heading font-bold mb-3 sm:mb-4 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent px-4">Технологии</h2>
-            <p className="text-center text-gray-600 text-base sm:text-lg max-w-2xl mx-auto px-4">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-heading font-bold mb-4 sm:mb-6 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent px-4">Технологии</h2>
+            <p className="text-center text-gray-700 text-lg sm:text-xl max-w-2xl mx-auto px-4 font-semibold">
               Используем современный стек технологий для создания надёжных решений
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
             {technologies.map((tech, index) => (
               <Card
                 key={tech.name}
@@ -187,16 +193,16 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="services" className="py-12 sm:py-20 px-4 sm:px-6 bg-gradient-to-br from-blue-50/50 to-white relative">
+      <section id="services" className="py-16 sm:py-24 px-4 sm:px-6 bg-gradient-to-br from-blue-50/50 to-white relative">
         <div className="absolute bottom-20 right-10 w-80 h-80 bg-primary/5 rounded-full blur-3xl" />
         <div className="container mx-auto max-w-6xl relative z-10">
-          <div className="text-center mb-10 sm:mb-16">
-            <h2 className="text-3xl sm:text-5xl font-heading font-bold mb-3 sm:mb-4 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent px-4">Услуги</h2>
-            <p className="text-center text-gray-600 text-base sm:text-lg max-w-2xl mx-auto px-4">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-heading font-bold mb-4 sm:mb-6 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent px-4">Услуги</h2>
+            <p className="text-center text-gray-700 text-lg sm:text-xl max-w-2xl mx-auto px-4 font-semibold">
               Полный спектр услуг для цифровой трансформации вашего бизнеса
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
             {services.map((service, index) => (
               <Card
                 key={service.title}
@@ -220,31 +226,31 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="about" className="py-12 sm:py-20 px-4 sm:px-6 bg-white relative">
+      <section id="about" className="py-16 sm:py-24 px-4 sm:px-6 bg-white relative">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-gradient-to-r from-primary/5 to-secondary/5 rounded-full blur-3xl" />
         <div className="container mx-auto max-w-4xl text-center relative z-10">
-          <h2 className="text-3xl sm:text-5xl font-heading font-bold mb-6 sm:mb-8 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent px-4">О компании</h2>
-          <p className="text-base sm:text-lg text-gray-700 leading-relaxed mb-4 sm:mb-6 font-medium px-4">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-heading font-bold mb-8 sm:mb-10 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent px-4">О компании</h2>
+          <p className="text-lg sm:text-xl text-gray-800 leading-relaxed mb-6 sm:mb-8 font-bold px-4">
             Новология — это команда экспертов, объединённых общей целью: создавать технологические
             решения, которые меняют мир к лучшему. Мы специализируемся на разработке современных
             веб-приложений, мобильных платформ и облачных систем.
           </p>
-          <p className="text-base sm:text-lg text-gray-700 leading-relaxed font-medium px-4">
+          <p className="text-lg sm:text-xl text-gray-800 leading-relaxed font-bold px-4">
             Наш подход основан на глубоком понимании бизнес-процессов клиента и использовании
             передовых технологий для достижения максимальной эффективности.
           </p>
         </div>
       </section>
 
-      <section id="team" className="py-12 sm:py-20 px-4 sm:px-6 bg-gradient-to-br from-white to-blue-50/50 relative">
+      <section id="team" className="py-16 sm:py-24 px-4 sm:px-6 bg-gradient-to-br from-white to-blue-50/50 relative">
         <div className="container mx-auto max-w-6xl relative z-10">
-          <div className="text-center mb-10 sm:mb-16">
-            <h2 className="text-3xl sm:text-5xl font-heading font-bold mb-3 sm:mb-4 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent px-4">Наша команда</h2>
-            <p className="text-center text-gray-600 text-base sm:text-lg max-w-2xl mx-auto px-4">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-heading font-bold mb-4 sm:mb-6 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent px-4">Наша команда</h2>
+            <p className="text-center text-gray-700 text-lg sm:text-xl max-w-2xl mx-auto px-4 font-semibold">
               Профессионалы, которые воплощают идеи в реальность
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
             {team.map((member, index) => (
               <Card
                 key={member.name}
@@ -262,7 +268,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="contact" className="py-12 sm:py-20 px-4 sm:px-6 bg-white relative">
+      <section id="contact" className="py-16 sm:py-24 px-4 sm:px-6 bg-white relative">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-primary/5 rounded-full blur-3xl" />
         <div className="container mx-auto max-w-3xl text-center relative z-10">
           <h2 className="text-3xl sm:text-5xl font-heading font-bold mb-4 sm:mb-6 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent px-4">Контакты</h2>
